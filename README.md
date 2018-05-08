@@ -19,6 +19,9 @@ Give yourself a Vim macro:
 
     :nmap <Buffer> <Leader>p :w \| :!pandoc -o %.pdf %<CR>
 
+For more complicated documents, I also have a project template for a LaTeX article:
+<https://github.com/sleepymurph/template_latex_article>
+
 
 Notes
 --------------------------------------------------
@@ -86,3 +89,20 @@ Apparently fonts work completely differently in XeLaTeX,
 and I have not had a chance to figure that out.
 
 TODO: Figure out how to get Open Sans with `xelatex` too.
+
+
+### More options
+
+Options to set can be found by looking at Pandoc's LaTeX template.
+
+On my Ubuntu system, that lives at
+[`/usr/share/pandoc/data/templates/default.latex`](file:///usr/share/pandoc/data/templates/default.latex)
+
+Look for directives that are surrounded by dollar signs:
+
+    $if(geometry)$
+    \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+    $endif$
+
+Here we see `geometry` used in a loop.
+So it would seem that we can create an array in the YAML with an array of configuration options for the geometry package.
